@@ -14,8 +14,6 @@ class Solution {
                     visited.add(strs[j]);
                 }
             }
-            // if(list.isEmpty())
-            //     list.add(strs[i]);
             res.add(list);
         }
         if(!visited.contains(strs[strs.length-1]))
@@ -25,16 +23,28 @@ class Solution {
     public boolean isAnagram(String s, String t) {
         if(s.length() != t.length())
             return false;
-        char[] sc = s.toCharArray();
-        char[] tc = t.toCharArray();
         
-        Arrays.sort(sc);
-        Arrays.sort(tc);
+        int[] freq = new int[26];
 
-        for(int i=0;i<sc.length;i++){
-            if(sc[i] != tc[i])
+        for(int i=0;i<s.length();i++){
+            freq[s.charAt(i)-'a']++;
+            freq[t.charAt(i)-'a']--;
+        }
+
+        for(int i : freq){
+            if(i!=0)
                 return false;
         }
+        // char[] sc = s.toCharArray();
+        // char[] tc = t.toCharArray();
+        
+        // Arrays.sort(sc);
+        // Arrays.sort(tc);
+
+        // for(int i=0;i<sc.length;i++){
+        //     if(sc[i] != tc[i])
+        //         return false;
+        // }
         
         return true;
     }
